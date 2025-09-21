@@ -9,7 +9,7 @@ def get_df_fgi_v1():
     # Dữ liệu HOSE
     df_hose = dwh.query(f"""
         SELECT ticker, tradingdate, closepriceadjusted AS closeprice
-        FROM staging.{TBL_HOSE}
+        FROM staging.{TBL_VIN}
         WHERE LEN(ticker) = 3
         ORDER BY ticker, tradingdate
     """).astype({'tradingdate': 'datetime64'})
@@ -28,7 +28,7 @@ def get_df_fgi_v1():
     # Dữ liệu VNINDEX
     df_index = dwh.query(f"""
         SELECT tradingdate, indexvalue AS vnindex
-        FROM staging.{TBL_INDEX}
+        FROM staging.{TBL_YEAH}
         WHERE comgroupcode='VNINDEX' AND tradingdate>='2015-01-01'
         ORDER BY tradingdate
     """).astype({'tradingdate': 'datetime64'})
