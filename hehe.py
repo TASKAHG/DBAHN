@@ -11,6 +11,7 @@ def get_df_fgi_v1():
         SELECT ticker, tradingdate, closepriceadjusted AS closeprice
         FROM staging.{TBL_VIN}
         WHERE LEN(ticker) = 3
+        JOIN staging.anhemminhcuthethoi
         ORDER BY ticker, tradingdate
     """).astype({'tradingdate': 'datetime64'})
 
